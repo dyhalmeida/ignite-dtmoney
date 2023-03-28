@@ -3,6 +3,7 @@ import { ITransaction } from "../../interfaces/transaction.interface"
 
 interface ITransactionContextType {
     transactions: ITransaction[]
+    fetchTransactions: (query?: string) => Promise<void>
 }
 
 interface ITransactionsProviderProps {
@@ -15,16 +16,24 @@ export function TransactionsProvider({ children }: ITransactionsProviderProps) {
 
     const [transactions, setTransactions] = useState<ITransaction[]>([])
 
+    const fetchTransactions = async (query?: string) => {
+      const url = new URL('http://localhost:3333/transactions')
+      if (query) url.searchParams.append('q', query)
+      const response = await fetch(url)
+      const data = await response.json()
+
+      setTransactions(data)
+    }
+
     useEffect(() => {
-        fetch('http://localhost:3333/transactions')
-            .then(response  => response.json())
-            .then(data => setTransactions(data))
+       fetchTransactions()
     }, [])
     
     return (
         <TransactionsContext.Provider
           value={{
             transactions,
+            fetchTransactions
           }}
         >
           {children}
