@@ -1,9 +1,10 @@
-import { useTransactions } from '../useTransactions'
+import { useMemo } from 'react'
+import { useTransactions } from '../transactions/useTransactions'
 
 export const useSummary = () => {
-  const { transactions } = useTransactions()
+  const transactions = useTransactions()
 
-  const summary = transactions.reduce(
+  const summary = useMemo(() => transactions.reduce(
     (acc, transaction) => {
       if (transaction.type === 'income') {
         acc.income += transaction.price
@@ -20,7 +21,7 @@ export const useSummary = () => {
       outcome: 0,
       total: 0,
     },
-  )
+  ), [transactions])
 
   return {
     summary,
