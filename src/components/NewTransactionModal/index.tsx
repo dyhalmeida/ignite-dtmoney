@@ -10,7 +10,7 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from './styles'
-import { useTransactions } from '../../hooks/useTransactions'
+import { useCreateTransaction } from '../../hooks/transactions/useCreateTransaction'
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -22,7 +22,7 @@ const newTransactionFormSchema = z.object({
 type TNewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
 export function NewTransactionModal() {
-  const { createTransaction } = useTransactions()
+  const createTransaction = useCreateTransaction()
 
   const {
     control,
