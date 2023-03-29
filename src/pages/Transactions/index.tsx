@@ -1,6 +1,6 @@
 import { Header } from '../../components/Header'
 import { Summary } from '../../components/Summary/Summary'
-import { useTransactions } from '../../hooks/useTransactions'
+import { useTransactions } from '../../hooks/transactions/useTransactions'
 import { dateFormatter, priceFormatter } from '../../utils/formatter'
 import { SearchForm } from './components/SearchForm'
 import {
@@ -10,7 +10,7 @@ import {
 } from './styles'
 
 export function Transactions() {
-  const { transactions } = useTransactions()
+  const transactions = useTransactions()
 
   return (
     <div>
