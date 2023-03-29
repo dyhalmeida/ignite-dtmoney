@@ -4,8 +4,7 @@ import { priceFormatter } from '../../utils/formatter'
 import { SummaryCard, SummaryContainer } from './styles'
 
 export function Summary() {
-
- const { summary } = useSummary()
+  const { summary } = useSummary()
 
   return (
     <SummaryContainer>

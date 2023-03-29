@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const SearchFormContainer = styled.form`
-  
   display: flex;
   gap: 1rem;
 
@@ -16,7 +15,6 @@ export const SearchFormContainer = styled.form`
     &::placeholder {
       color: ${(props) => props.theme['gray-500']};
     }
-
   }
 
   button {
